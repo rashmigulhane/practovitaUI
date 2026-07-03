@@ -1,7 +1,7 @@
 import React from 'react';
 import { Tabs } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
-import { StyleSheet, View, Text, Platform } from 'react-native';
+import { StyleSheet, View, Platform } from 'react-native';
 import { BlurView } from 'expo-blur';
 
 import { colors, font } from '@/src/theme/tokens';
@@ -50,10 +50,10 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="ask"
+        name="plan"
         options={{
-          title: 'Ask Me',
-          tabBarIcon: ({ color, focused }) => <TabIcon name="chatbubbles-outline" color={color} focused={focused} />,
+          title: 'Plan',
+          tabBarIcon: ({ color, focused }) => <TabIcon name="leaf-outline" color={color} focused={focused} />,
         }}
       />
       <Tabs.Screen
@@ -65,11 +65,6 @@ export default function TabLayout() {
       />
     </Tabs>
   );
-}
-
-// small helper to display label — used within screens; not exported
-export function TabHint({ text }: { text: string }) {
-  return <Text style={styles.label}>{text}</Text>;
 }
 
 const styles = StyleSheet.create({

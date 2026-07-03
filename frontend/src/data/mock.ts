@@ -98,6 +98,60 @@ export const workouts: Workout[] = [
   { id: 'w4', title: 'HIIT Cardio', duration: '15 min', intensity: 'High', icon: 'flash-outline' },
 ];
 
+export type Habit = { id: string; title: string; icon: string; target: string; category: 'diet' | 'workout' | 'wellness' };
+export const habits: Habit[] = [
+  { id: 'h1', title: 'Drink 8 glasses of water', icon: 'water-outline', target: '2 L', category: 'wellness' },
+  { id: 'h2', title: 'Take morning walk', icon: 'walk-outline', target: '30 min', category: 'workout' },
+  { id: 'h3', title: 'Eat 5 servings of fruit/veg', icon: 'nutrition-outline', target: '5×', category: 'diet' },
+  { id: 'h4', title: '10-min mindful breathing', icon: 'leaf-outline', target: '10 min', category: 'wellness' },
+  { id: 'h5', title: 'Sleep 7+ hours', icon: 'moon-outline', target: '7 h', category: 'wellness' },
+  { id: 'h6', title: 'Take medication', icon: 'medical-outline', target: '1×', category: 'wellness' },
+];
+
+export const wellnessScore = {
+  current: 78,
+  delta: '+4',
+  streak: 12,
+  weekdays: [
+    { day: 'M', done: true },
+    { day: 'T', done: true },
+    { day: 'W', done: true },
+    { day: 'T', done: true },
+    { day: 'F', done: false, today: true },
+    { day: 'S', done: false },
+    { day: 'S', done: false },
+  ],
+};
+
+export type DeviceCfg = {
+  id: string;
+  name: string;
+  icon: string;
+  connected: boolean;
+  status?: string;
+};
+export const availableDevices: DeviceCfg[] = [
+  { id: 'fitbit', name: 'Fitbit Charge 6', icon: 'watch-outline', connected: true, status: 'Syncing steps, HR, sleep' },
+  { id: 'apple', name: 'Apple Watch', icon: 'watch-outline', connected: false },
+  { id: 'garmin', name: 'Garmin', icon: 'watch-outline', connected: false },
+  { id: 'oura', name: 'Oura Ring', icon: 'ellipse-outline', connected: false },
+  { id: 'wear', name: 'Wear OS', icon: 'watch-outline', connected: false },
+  { id: 'ghealth', name: 'Google Health Connect', icon: 'fitness-outline', connected: false },
+  { id: 'ahealth', name: 'Apple Health', icon: 'medkit-outline', connected: false },
+  { id: 'bp', name: 'Bluetooth BP Monitor', icon: 'heart-circle-outline', connected: false },
+  { id: 'glc', name: 'CGM (Glucose Sensor)', icon: 'water-outline', connected: false },
+  { id: 'scale', name: 'Smart Scale', icon: 'speedometer-outline', connected: false },
+];
+
+export const trackingConfig = [
+  { id: 'steps', label: 'Steps', goal: '10,000', enabled: true, icon: 'walk-outline' },
+  { id: 'hr', label: 'Heart Rate', goal: 'Auto', enabled: true, icon: 'heart-outline' },
+  { id: 'sleep', label: 'Sleep', goal: '7 hrs', enabled: true, icon: 'moon-outline' },
+  { id: 'kcal', label: 'Calories', goal: '2,000', enabled: true, icon: 'flame-outline' },
+  { id: 'water', label: 'Hydration', goal: '2 L', enabled: false, icon: 'water-outline' },
+  { id: 'stress', label: 'Stress', goal: 'Auto', enabled: false, icon: 'pulse-outline' },
+];
+
 export type QuestionOption = { label: string; value: string | number };
 export type Question = { id: string; title: string; subtitle?: string; type: 'select' | 'number' | 'multiselect'; options?: QuestionOption[]; unit?: string };
 
