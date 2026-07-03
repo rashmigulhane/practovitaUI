@@ -1,0 +1,169 @@
+{
+  "app_name": "Practavita",
+  "personality": "1 iOS-Native Clean",
+  "personality_one_liner": "A calming, highly readable, and elegantly structured health companion that makes medical and fitness data feel approachable, not clinical.",
+  "color": {
+    "surface": "#FDFDFC",
+    "onSurface": "#1C1C19",
+    "surfaceSecondary": "#FFFFFF",
+    "onSurfaceSecondary": "#5A5A55",
+    "surfaceTertiary": "#F2F2F0",
+    "onSurfaceTertiary": "#40403C",
+    "surfaceInverse": "#1F211F",
+    "onSurfaceInverse": "#FFFFFF",
+    "brand": "#5A7D66",
+    "brandPrimary": "#5A7D66",
+    "onBrandPrimary": "#FFFFFF",
+    "brandSecondary": "#88A392",
+    "onBrandSecondary": "#1C1C19",
+    "brandTertiary": "#E3EBE6",
+    "onBrandTertiary": "#3E5C4A",
+    "success": "#628A70",
+    "onSuccess": "#FFFFFF",
+    "warning": "#D18E62",
+    "onWarning": "#FFFFFF",
+    "error": "#C9665E",
+    "onError": "#FFFFFF",
+    "info": "#7C786E",
+    "onInfo": "#FFFFFF",
+    "border": "#EBEBE8",
+    "borderStrong": "#D6D6D2",
+    "divider": "#F2F2F0"
+  },
+  "typography": {
+    "displayFontFamily": "Plus Jakarta Sans",
+    "textFontFamily": "Plus Jakarta Sans",
+    "scale": {
+      "sm": 12,
+      "base": 14,
+      "lg": 16,
+      "xl": 20,
+      "2xl": 24
+    }
+  },
+  "spacing": {
+    "rule": "Maintain generous iOS-native padding. Group related metrics closely while providing ample breathing room between separate cards to avoid a cluttered clinical dashboard.",
+    "xs": 4,
+    "sm": 8,
+    "md": 12,
+    "lg": 16,
+    "xl": 24,
+    "2xl": 32,
+    "3xl": 48
+  },
+  "radius_tokens": {
+    "sm": 6,
+    "md": 12,
+    "lg": 20,
+    "pill": 999
+  },
+  "shadow_tier": "1",
+  "navigation": "bottom_tabs",
+  "icon_set": "Phosphor",
+  "glassmorphism": {
+    "enabled": true,
+    "do's": [
+      "Use on the bottom tab bar to allow scrolling content to gently blur behind it.",
+      "Use on sticky headers or sticky bottom CTAs over scrollable forms.",
+      "Use on floating action buttons (e.g., quick 'Upload Report' trigger)."
+    ],
+    "dont's": [
+      "Do not use on regular data cards, lab result rows, or dense form inputs."
+    ]
+  },
+  "platform_libraries": {
+    "glass": {
+      "ios": "expo-glass-effect",
+      "android": "expo-blur",
+      "low_end_android_fallback": "solid surfaceSecondary"
+    },
+    "image": "expo-image",
+    "blur": "expo-blur",
+    "bottom_sheet": "@gorhom/bottom-sheet",
+    "animation": "react-native-reanimated",
+    "gesture": "react-native-gesture-handler"
+  },
+  "screens": [
+    {
+      "name": "Home",
+      "purpose": "A glanceable command center displaying real-time wearable sensor data, pending tasks, and top-level risk scores.",
+      "states": {
+        "loading": "Skeleton UI for sensor metric cards and a subtle pulsing circular track for the risk gauges.",
+        "empty": "A soft botanical illustration inviting the user to sync a wearable or complete their initial risk assessment.",
+        "error": "A calm, readable error message advising the user to pull-to-refresh or check wearable connection."
+      },
+      "layout": "Use a modular grid for wearable metrics (Steps, HR, Sleep) as 2-column square cards with bold numerical data and subtle sparklines. Below, feature a full-width featured card for Diabetes & CVD risk scores using elegant semi-circular gauges."
+    },
+    {
+      "name": "Insights (Lab Reports)",
+      "purpose": "Displays extracted health metrics, blood report trends, and personalized recommendations.",
+      "states": {
+        "loading": "A central spinner while extracting data from a newly uploaded PDF via Temporal.",
+        "empty": "An illustration of a clean clipboard or medical folder encouraging the user to 'Upload your first blood report'.",
+        "error": "Message stating extraction failed, with a sticky primary 'Retry Upload' button at the bottom."
+      },
+      "layout": "Organize in vertical list items. Each metric (e.g., Hemoglobin, Glucose) gets a dedicated row showing current value, a micro-chart mapping the trend, and a color-coded status pill (success/warning/error). Sticky CTA at bottom for 'Upload Report'."
+    },
+    {
+      "name": "Ask Me (Chatbot)",
+      "purpose": "Conversational AI assistant that accesses user health data to answer specific wellness queries.",
+      "states": {
+        "loading": "Typing indicator bubbles (...).",
+        "empty": "A warm greeting message from the AI with 3 tappable suggestion chips (e.g., 'Analyze my last lab results', 'Suggest a workout for today').",
+        "error": "Inline error bubble 'I am having trouble connecting to your data right now. Please try again.'"
+      },
+      "layout": "Standard chat interface. User bubbles use `brandTertiary`, AI bubbles use `surfaceSecondary` with a subtle shadow. Input field is sticky above the keyboard inside a KeyboardAvoidingView."
+    },
+    {
+      "name": "Profile",
+      "purpose": "Manage multi-profile settings, family members, and connected wearable devices.",
+      "states": {
+        "loading": "Standard spinner.",
+        "empty": "Not applicable as the primary user profile always exists.",
+        "error": "Toast notification for failed profile updates."
+      },
+      "layout": "List-based settings layout. A top section for the active profile switcher (horizontal scroll of avatars/initials). Below, stacked rows with left-aligned icons for 'Linked Wearables', 'Health Questionnaire', and 'Settings'."
+    },
+    {
+      "name": "Onboarding & Questionnaire",
+      "purpose": "Collect initial health data to compute baseline risk scores in a frictionless, step-by-step flow.",
+      "states": {
+        "loading": "Subtle progress bar loading next step.",
+        "empty": "N/A",
+        "error": "Validation error text below the specific input field."
+      },
+      "layout": "One question per screen. Large, highly legible typography. Sticky 'Next' button anchored to the bottom (above keyboard). Includes haptic feedback on selection."
+    }
+  ],
+  "images": {
+    "onboarding_hero": {
+      "url": "https://images.unsplash.com/photo-1592355591829-aaae33fcff1d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzOTB8MHwxfHNlYXJjaHwxfHxtaW5pbWFsaXN0JTIwaGVhbHRoJTIwd2VsbG5lc3MlMjBsaWZlc3R5bGV8ZW58MHx8fHwxNzgzMDU5OTAyfDA&ixlib=rb-4.1.0&q=85",
+      "alt": "Minimalist white book page with yellow flower petals conveying calm wellness"
+    },
+    "diet_recommendation": {
+      "url": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1MDZ8MHwxfHNlYXJjaHwxfHxoZWFsdGh5JTIwZm9vZCUyMGRpZXQlMjBwbGFufGVufDB8fHx8MTc4MzA1OTkwMnww&ixlib=rb-4.1.0&q=85",
+      "alt": "Nutritious bowl of colorful vegetable salads"
+    },
+    "empty_lab_reports": {
+      "url": "https://images.unsplash.com/photo-1599727277757-3f54e54ea618?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NzV8MHwxfHNlYXJjaHwyfHxhYnN0cmFjdCUyMG1lZGljYWwlMjBzY2llbmNlJTIwbGFib3JhdG9yeXxlbnwwfHx8fDE3ODMwNTk5MDJ8MA&ixlib=rb-4.1.0&q=85",
+      "alt": "Abstract soft-focus lab vials representing medical science"
+    }
+  },
+  "haptics": {
+    "primary_button_press": "impactLight",
+    "tab_switch": "selection",
+    "toggle_switch": "impactLight",
+    "questionnaire_selection": "selection",
+    "gauge_fill_complete": "notificationSuccess"
+  },
+  "instructions_to_main_agent": [
+    "Design specifically for iOS and Android native platforms—DO NOT use web idioms like hover states. Implement touch targets of at least 44x44pt.",
+    "Implement bottom tab navigation utilizing 'expo-glass-effect' or 'expo-blur' for an elegant, elevated feel over scrolling content.",
+    "Strictly adhere to the NO-BLUE rule for the color palette. Rely on the provided botanical green (sage/forest) and warm neutrals to build trust without looking like a generic corporate app.",
+    "All primary CTAs (e.g., 'Upload Report', 'Next' in questionnaire) must be sticky at the bottom of the screen, placed above the safe area, avoiding overlap with scrolling content.",
+    "For lab metric lists in 'Insights', use color-coded status pills (Success: Sage, Warning: Terracotta, Error: Brick Red) rather than decorative icons. Ensure text contrast against these pills meets WCAG standards.",
+    "Ensure any image backgrounds feature a top-to-bottom gradient scrim to guarantee text legibility.",
+    "In the Dashboard, arrange wearable metrics in a 2-column grid layout, utilizing 'space-between' for equal distribution.",
+    "Do not use generic emojis anywhere in the system UI; rely exclusively on Phosphor icons with consistent weights."
+  ]
+}
