@@ -5,6 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 
 import ProfileAvatar from '@/src/components/ProfileAvatar';
+import AskFab from '@/src/components/AskFab';
 import { profiles, wearable } from '@/src/data/mock';
 import { colors, font, radius, shadows, spacing, type } from '@/src/theme/tokens';
 
@@ -81,6 +82,25 @@ export default function ProfileScreen() {
         </Pressable>
 
         {/* Settings groups */}
+        <Text style={[styles.sectionTitle, { marginTop: spacing.xl }]}>Care team</Text>
+        <View style={[styles.group, shadows.card]}>
+          <Row
+            icon="ribbon-outline"
+            title="Your coach"
+            subtitle="Book sessions & view history"
+            onPress={() => router.push('/coach')}
+            testID="row-coach"
+          />
+          <Row
+            icon="time-outline"
+            title="Activity history"
+            subtitle="Everything you've logged"
+            onPress={() => router.push('/history')}
+            testID="row-history"
+            last
+          />
+        </View>
+
         <Text style={[styles.sectionTitle, { marginTop: spacing.xl }]}>Health</Text>
         <View style={[styles.group, shadows.card]}>
           <Row
@@ -136,6 +156,8 @@ export default function ProfileScreen() {
         <Text style={styles.version}>Practavita · v1.0.0</Text>
         <View style={{ height: 100 }} />
       </ScrollView>
+
+      <AskFab bottom={100} />
     </SafeAreaView>
   );
 }

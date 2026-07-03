@@ -152,6 +152,89 @@ export const trackingConfig = [
   { id: 'stress', label: 'Stress', goal: 'Auto', enabled: false, icon: 'pulse-outline' },
 ];
 
+export type Improvement = { id: string; label: string; delta: string; from: string; to: string; direction: 'up' | 'down'; icon: string; positive: boolean };
+export const weeklyWins: Improvement[] = [
+  { id: 'w1', label: 'Resting HR', delta: '-4 bpm', from: '76', to: '72', direction: 'down', icon: 'heart-outline', positive: true },
+  { id: 'w2', label: 'Sleep quality', delta: '+8%', from: '72%', to: '80%', direction: 'up', icon: 'moon-outline', positive: true },
+  { id: 'w3', label: 'Weekly steps', delta: '+12%', from: '52k', to: '58k', direction: 'up', icon: 'walk-outline', positive: true },
+  { id: 'w4', label: 'Stress level', delta: '-14%', from: '42', to: '36', direction: 'down', icon: 'pulse-outline', positive: true },
+];
+
+export const sleepData = {
+  hours: 7.4,
+  quality: 82,
+  deep: 1.4,
+  rem: 1.8,
+  light: 3.6,
+  awake: 0.6,
+  weeklyAvg: 7.1,
+  weekTrend: [6.8, 7.2, 6.5, 7.1, 8.1, 7.4, 7.4],
+  bedtime: '11:12 PM',
+  wake: '6:36 AM',
+};
+
+export const stressData = {
+  current: 36,
+  level: 'Balanced' as const,
+  weekAvg: 42,
+  weekTrend: [58, 52, 48, 45, 40, 38, 36],
+  restTime: 68,
+  activeTime: 32,
+  insight: 'Your stress dropped 14% this week — likely from consistent sleep and morning walks.',
+};
+
+export type Coach = { id: string; name: string; title: string; initials: string; color: string; nextAvailable: string };
+export const myCoach: Coach = {
+  id: 'c1',
+  name: 'Dr. Meera Iyer',
+  title: 'Certified Nutritionist & Wellness Coach',
+  initials: 'MI',
+  color: '#88A392',
+  nextAvailable: 'Tomorrow 10:00 AM',
+};
+
+export type Session = { id: string; when: string; type: 'video' | 'call' | 'chat'; topic: string; duration: string; notes?: string; upcoming?: boolean };
+export const coachSessions: Session[] = [
+  { id: 's0', when: 'Tomorrow · 10:00 AM', type: 'video', topic: 'Weekly check-in & lab review', duration: '30 min', upcoming: true },
+  { id: 's1', when: 'Nov 15, 2025', type: 'video', topic: 'Lipid panel action plan', duration: '45 min', notes: 'Discussed LDL rising trend. Agreed on 30-min brisk walks + oatmeal breakfast for 4 weeks. Follow-up lab in Feb.' },
+  { id: 's2', when: 'Oct 30, 2025', type: 'chat', topic: 'Meal plan customisation', duration: '20 min', notes: 'Swapped afternoon snack to roasted chana. Removed dairy from evenings. Meera to send recipe deck.' },
+  { id: 's3', when: 'Oct 12, 2025', type: 'call', topic: 'Onboarding & goal setting', duration: '30 min', notes: 'Set primary goals: reduce LDL <120, lose 4 kg in 12 weeks, sleep 7+ hrs.' },
+];
+
+export type HistoryEntry = { id: string; day: string; type: 'meal' | 'workout' | 'report' | 'coach' | 'habit'; title: string; meta: string; icon: string };
+export const historyFeed: HistoryEntry[] = [
+  { id: 'e1', day: 'Today', type: 'workout', title: 'Brisk Walk · 32 min', meta: '3.4 km · 148 kcal', icon: 'walk-outline' },
+  { id: 'e2', day: 'Today', type: 'meal', title: 'Breakfast logged', meta: 'Oats with berries · 380 kcal', icon: 'restaurant-outline' },
+  { id: 'e3', day: 'Yesterday', type: 'coach', title: 'Session with Dr. Meera', meta: '45 min · Lipid panel review', icon: 'chatbubbles-outline' },
+  { id: 'e4', day: 'Yesterday', type: 'workout', title: 'Yoga Flow · 22 min', meta: 'Low intensity', icon: 'leaf-outline' },
+  { id: 'e5', day: 'Yesterday', type: 'habit', title: 'All 6 habits complete', meta: '2-day streak begun', icon: 'checkmark-circle-outline' },
+  { id: 'e6', day: 'Nov 12', type: 'report', title: 'Full Body Checkup uploaded', meta: '42 metrics extracted', icon: 'document-text-outline' },
+  { id: 'e7', day: 'Nov 10', type: 'workout', title: 'Strength Training · 25 min', meta: 'Moderate intensity · 210 kcal', icon: 'barbell-outline' },
+  { id: 'e8', day: 'Nov 9', type: 'meal', title: 'Dinner logged', meta: 'Grilled fish + veg · 460 kcal', icon: 'restaurant-outline' },
+];
+
+// 30-day heat-map (0-4 intensity per day)
+export const monthHeatmap: number[] = [
+  2, 3, 4, 3, 2, 1, 0,
+  3, 4, 4, 3, 2, 3, 2,
+  4, 3, 4, 4, 3, 2, 3,
+  4, 4, 3, 4, 3, 4, 4,
+  3, 4,
+];
+
+export const weekSummary = {
+  days: [
+    { label: 'Mon', habits: 6, meals: 4, workout: true, kcal: 1780 },
+    { label: 'Tue', habits: 5, meals: 4, workout: true, kcal: 1820 },
+    { label: 'Wed', habits: 6, meals: 3, workout: false, kcal: 1650 },
+    { label: 'Thu', habits: 4, meals: 4, workout: true, kcal: 1900 },
+    { label: 'Fri', habits: 3, meals: 2, workout: false, kcal: 1200, today: true },
+    { label: 'Sat', habits: 0, meals: 0, workout: false, kcal: 0 },
+    { label: 'Sun', habits: 0, meals: 0, workout: false, kcal: 0 },
+  ],
+  totals: { workouts: 3, mealsLogged: 17, habitsDone: 24, habitsTarget: 42 },
+};
+
 export type QuestionOption = { label: string; value: string | number };
 export type Question = { id: string; title: string; subtitle?: string; type: 'select' | 'number' | 'multiselect'; options?: QuestionOption[]; unit?: string };
 

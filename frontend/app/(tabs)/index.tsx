@@ -10,7 +10,7 @@ import Sparkline from '@/src/components/Sparkline';
 import RiskGauge from '@/src/components/RiskGauge';
 import ProfileAvatar from '@/src/components/ProfileAvatar';
 import AskFab from '@/src/components/AskFab';
-import { profiles, todayMetrics, riskScores, wearable, wellnessScore, dietPlan, workouts } from '@/src/data/mock';
+import { profiles, todayMetrics, riskScores, wearable, wellnessScore, dietPlan, workouts, weeklyWins, myCoach } from '@/src/data/mock';
 import { colors, font, radius, shadows, spacing, type } from '@/src/theme/tokens';
 
 function WellnessRing({ score, size = 100 }: { score: number; size?: number }) {
@@ -188,6 +188,56 @@ export default function HomeScreen() {
           </Pressable>
         </View>
 
+        {/* This week's wins */}
+        <View style={[styles.sectionHead, { marginTop: spacing.xl }]}>
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+            <Ionicons name="trophy" size={16} color="#D18E62" />
+            <Text style={styles.sectionTitle}>This week{'\u2019'}s wins</Text>
+          </View>
+          <Pressable onPress={() => router.push('/history')}>
+            <Text style={styles.sectionAction}>History</Text>
+          </Pressable>
+        </View>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: spacing.md, paddingRight: spacing.lg }}>
+          {weeklyWins.map((w) => (
+            <View key={w.id} style={[styles.winCard, shadows.card]}>
+              <View style={styles.winHead}>
+                <View style={styles.winIcon}>
+                  <Ionicons name={w.icon as any} size={16} color={colors.brand} />
+                </View>
+                <View style={[styles.winDelta, w.positive && { backgroundColor: colors.brandTertiary }]}>
+                  <Ionicons name={w.direction === 'up' ? 'trending-up' : 'trending-down'} size={11} color={colors.brand} />
+                  <Text style={styles.winDeltaText}>{w.delta}</Text>
+                </View>
+              </View>
+              <Text style={styles.winLabel}>{w.label}</Text>
+              <View style={styles.winRow}>
+                <Text style={styles.winFrom}>{w.from}</Text>
+                <Ionicons name="arrow-forward" size={12} color={colors.onSurfaceSecondary} />
+                <Text style={styles.winTo}>{w.to}</Text>
+              </View>
+            </View>
+          ))}
+        </ScrollView>
+
+        {/* Coach card */}
+        <Pressable testID="home-coach-card" onPress={() => router.push('/coach')} style={[styles.coachCard, shadows.card]}>
+          <View style={styles.coachAvatar}>
+            <Text style={styles.coachInitials}>{myCoach.initials}</Text>
+          </View>
+          <View style={{ flex: 1 }}>
+            <Text style={styles.coachEyebrow}>YOUR COACH</Text>
+            <Text style={styles.coachName}>{myCoach.name}</Text>
+            <View style={styles.coachMetaRow}>
+              <Ionicons name="calendar-outline" size={11} color={colors.onBrandTertiary} />
+              <Text style={styles.coachMeta}>Next: {myCoach.nextAvailable}</Text>
+            </View>
+          </View>
+          <View style={styles.coachBtn}>
+            <Ionicons name="videocam" size={16} color={colors.onBrandPrimary} />
+          </View>
+        </Pressable>
+
         {/* Risk scores */}
         <View style={[styles.sectionHead, { marginTop: spacing.xl }]}>
           <Text style={styles.sectionTitle}>Health risk</Text>
@@ -352,6 +402,54 @@ const styles = StyleSheet.create({
   planEyebrow: { fontSize: 9, fontWeight: font.bold, color: colors.onSurfaceSecondary, letterSpacing: 1.2 },
   planTitle: { fontSize: type.base, fontWeight: font.bold, color: colors.onSurface },
   planSub: { fontSize: 11, color: colors.onSurfaceSecondary, marginTop: -2 },
+
+  winCard: {
+    width: 160, padding: spacing.md,
+    borderRadius: radius.lg,
+    backgroundColor: colors.surfaceSecondary,
+    borderWidth: 1, borderColor: colors.border,
+    gap: 8,
+  },
+  winHead: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
+  winIcon: {
+    width: 32, height: 32, borderRadius: 16,
+    backgroundColor: colors.brandTertiary,
+    alignItems: 'center', justifyContent: 'center',
+  },
+  winDelta: {
+    flexDirection: 'row', alignItems: 'center', gap: 3,
+    paddingHorizontal: 8, paddingVertical: 3,
+    borderRadius: 999, backgroundColor: colors.brandTertiary,
+  },
+  winDeltaText: { fontSize: 11, fontWeight: font.bold, color: colors.brand },
+  winLabel: { fontSize: 12, color: colors.onSurfaceSecondary, fontWeight: font.semibold, marginTop: 4 },
+  winRow: { flexDirection: 'row', alignItems: 'center', gap: 6 },
+  winFrom: { fontSize: 14, color: colors.onSurfaceSecondary, textDecorationLine: 'line-through' },
+  winTo: { fontSize: 18, fontWeight: font.bold, color: colors.onSurface, letterSpacing: -0.4 },
+
+  coachCard: {
+    marginTop: spacing.xl,
+    flexDirection: 'row', alignItems: 'center', gap: spacing.md,
+    padding: spacing.md,
+    borderRadius: radius.lg,
+    backgroundColor: colors.brandTertiary,
+    borderWidth: 1, borderColor: colors.brandSecondary + '40',
+  },
+  coachAvatar: {
+    width: 52, height: 52, borderRadius: 26,
+    backgroundColor: colors.brand,
+    alignItems: 'center', justifyContent: 'center',
+  },
+  coachInitials: { color: colors.onBrandPrimary, fontSize: 18, fontWeight: font.bold, letterSpacing: 0.4 },
+  coachEyebrow: { fontSize: 9, fontWeight: font.bold, color: colors.onBrandTertiary, letterSpacing: 1.4, opacity: 0.7 },
+  coachName: { fontSize: type.base, fontWeight: font.bold, color: colors.onBrandTertiary, marginTop: 2 },
+  coachMetaRow: { flexDirection: 'row', alignItems: 'center', gap: 4, marginTop: 4 },
+  coachMeta: { fontSize: 11, color: colors.onBrandTertiary, fontWeight: font.medium, opacity: 0.85 },
+  coachBtn: {
+    width: 40, height: 40, borderRadius: 20,
+    backgroundColor: colors.brand,
+    alignItems: 'center', justifyContent: 'center',
+  },
 
   riskCard: {
     borderRadius: radius.lg, backgroundColor: colors.surfaceSecondary,

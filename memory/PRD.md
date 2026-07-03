@@ -13,22 +13,32 @@ User will handle backend & integrations independently.
 - **Nav**: 4 bottom tabs — Home, Insights, Ask Me, Profile
 - **Visual system**: 8pt spacing grid, 20/12/6px radii, semi-circular SVG gauges for risk, area sparklines for trends, color-coded pills for lab statuses
 
-## Screens Delivered (12)
-1. **Welcome / `/`** — hero image with sage scrim, brand mark, feature pills, Get Started CTA
-2. **Onboarding Questionnaire** — 8-step flow (age, sex, height, weight, family history, activity, smoking, BP) with progress bar, number & select inputs, sticky Next
-3. **Risk Results** — dual semi-circular gauges (Diabetes/CVD) with score, level pill, key factors list
-4. **(tabs) Home** — greeting, wearable sync banner, 2×2 metric grid with sparklines (Steps/HR/Sleep/Kcal), dual risk gauges, quick actions
-5. **(tabs) Insights** — horizontal category chip filter (All/CBC/Diabetes/Lipids/Thyroid/Kidney/Vitamins), recent reports carousel, full lab metrics list with reference ranges & status pills, sticky Upload CTA
-6. **(tabs) Ask Me** — AI chatbot with greeting, suggestion chips, canned rule-based responses (labs, LDL, workout, diet keywords), typing indicator, sticky composer
-7. **(tabs) Profile** — horizontal profile switcher for family, connected device row, health/preferences/account setting groups with toggles
-8. **Upload Report** — dropzone → source picker (PDF/gallery/camera) → simulated Temporal-style pipeline timeline (Upload → Extract → Normalize → Match) → success state
-9. **Report Detail `/report/[id]`** — summary counts (Normal/Watch/High), "Needs attention" section, normal-range section, sticky "Ask AI" CTA
-10. **Recommendations** — Diet/Workout tabbed view; Diet: kcal card + macro pills + 4 meal cards; Workout: weekly progress ring + workout cards
-11. **Wearable** — Fitbit device card with battery bar, sync/disconnect actions, live metrics grid, sync toggles, add-another-device list (Apple/Garmin/Oura/Wear OS)
-12. **Family Profiles** — selectable member list, add-member card, privacy info box, sticky Continue CTA
+## Screens Delivered (14)
+1. **Welcome / `/`** — hero image, brand mark, feature pills, Get Started CTA
+2. **Onboarding Questionnaire** — 8-step flow with progress bar
+3. **Risk Results** — dual semi-circular gauges (Diabetes/CVD)
+4. **(tabs) Home** — greeting, notif bell, **Wellness Score hero card** with streak & week-strip, wearable banner, 2×2 metric grid, **Today's plan preview**, **"This week's wins" horizontal cards** (Resting HR/Sleep/Steps/Stress deltas), **Coach card** with next session, risk gauges, quick actions, **Ask FAB**
+5. **(tabs) Insights** — **Sleep card** (hours, quality, deep/REM/light stages bar) + **Stress card** (score, level, week trend, rest vs active), **AI insight banner**, category chip filter, recent reports carousel, lab metrics list, sticky Upload CTA, **Ask FAB**
+6. **(tabs) Plan** — **Day/Week/Month segmented control** with:
+   - **Day**: habits checklist, quick stats, Diet/Workout inner tabs, meal check-offs, kcal target with macro pills
+   - **Week**: bar chart of 7-day habits+kcal, workout indicators, breakdown stats vs last week
+   - **Month**: 30-day heatmap (5 intensity levels), active/perfect/streak stats, monthly wins narrative
+7. **(tabs) Profile** — profile switcher, connected devices, **Care team group (Coach + Activity history)**, health/preferences/account groups, Ask FAB
+8. **Coach `/coach`** — gradient coach card with rating & message/call actions, upcoming session, day/slot booking picker, Overview/History tabs with session log + notes
+9. **History `/history`** — summary strip, category filter chips, day-grouped timeline with color-coded activity icons
+10. **Upload Report** — dropzone → sources → Temporal-style pipeline timeline
+11. **Report Detail** — summary, needs-attention section, normal section
+12. **Wearable** — device card, battery, live metrics, sync toggles, add-device list
+13. **Family Profiles** — selectable family members + add
+14. **Ask Me `/ask`** — chatbot with suggestions + typing indicator (now FAB-launched)
 
-## Business Enhancement (UX-level)
-- **Family multi-profile is a growth loop**: parents managing elderly parents' reports drives 2–4× user LTV per household — surfaced prominently on the Profile tab and Home avatar switcher.
+## Retention Loops Baked In
+- **Streak counter** (12-day) on Home hero + Plan tab
+- **Weekly wins** with metric deltas ("−4 bpm resting HR") — visible loss aversion when broken
+- **Monthly heatmap** — visual satisfaction for consistency; "perfect days" gamification
+- **Coach relationship** — high-touch human loop drives 3–5× LTV
+- **Habit checkoffs** with haptic feedback for micro-dopamine
+- **AI insight banners** in Insights explain the "why" behind changes
 
 ## Next Actions
 - Wire mock data to real backend endpoints (Java/Dropwizard + Temporal per your spec).
