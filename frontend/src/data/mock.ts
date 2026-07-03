@@ -235,6 +235,97 @@ export const weekSummary = {
   totals: { workouts: 3, mealsLogged: 17, habitsDone: 24, habitsTarget: 42 },
 };
 
+export type PlannedMeal = { slot: 'B' | 'L' | 'S' | 'D'; name: string; kcal: number; tag: string };
+export type PlannedWorkout = { title: string; duration: string; intensity: string; icon: string } | null;
+export type WeekDay = {
+  key: string;
+  label: string;
+  short: string;
+  date: number;
+  isToday?: boolean;
+  isRest?: boolean;
+  meals: PlannedMeal[];
+  workout: PlannedWorkout;
+};
+
+export const weekAheadPlan = {
+  range: 'Nov 20 – Nov 26',
+  focus: 'Heart-healthy · Low-GI',
+  totals: { workouts: 5, avgKcal: 1720, waterTarget: '14 L' },
+  days: [
+    {
+      key: 'w0', label: 'Wednesday', short: 'Wed', date: 20, isToday: true,
+      meals: [
+        { slot: 'B', name: 'Oats & berries', kcal: 380, tag: 'Fiber' },
+        { slot: 'L', name: 'Quinoa bowl', kcal: 520, tag: 'Protein' },
+        { slot: 'S', name: 'Roasted chana', kcal: 180, tag: 'Low-GI' },
+        { slot: 'D', name: 'Steamed fish', kcal: 460, tag: 'Omega-3' },
+      ],
+      workout: { title: 'Brisk Walk', duration: '30 min', intensity: 'Low', icon: 'walk-outline' },
+    },
+    {
+      key: 'w1', label: 'Thursday', short: 'Thu', date: 21,
+      meals: [
+        { slot: 'B', name: 'Vegetable poha', kcal: 340, tag: 'Fiber' },
+        { slot: 'L', name: 'Grilled chicken salad', kcal: 480, tag: 'Protein' },
+        { slot: 'S', name: 'Greek yogurt + nuts', kcal: 200, tag: 'Protein' },
+        { slot: 'D', name: 'Dal + brown rice', kcal: 500, tag: 'Fiber' },
+      ],
+      workout: { title: 'Strength Training', duration: '25 min', intensity: 'Moderate', icon: 'barbell-outline' },
+    },
+    {
+      key: 'w2', label: 'Friday', short: 'Fri', date: 22,
+      meals: [
+        { slot: 'B', name: 'Avocado toast', kcal: 400, tag: 'Healthy fats' },
+        { slot: 'L', name: 'Palak paneer + roti', kcal: 550, tag: 'Iron' },
+        { slot: 'S', name: 'Apple + almonds', kcal: 190, tag: 'Low-GI' },
+        { slot: 'D', name: 'Grilled tofu stir-fry', kcal: 470, tag: 'Protein' },
+      ],
+      workout: { title: 'Yoga Flow', duration: '20 min', intensity: 'Low', icon: 'leaf-outline' },
+    },
+    {
+      key: 'w3', label: 'Saturday', short: 'Sat', date: 23, isRest: true,
+      meals: [
+        { slot: 'B', name: 'Idli + sambar', kcal: 360, tag: 'Fiber' },
+        { slot: 'L', name: 'Mixed veg thali', kcal: 580, tag: 'Balanced' },
+        { slot: 'S', name: 'Buttermilk + fruit', kcal: 160, tag: 'Probiotic' },
+        { slot: 'D', name: 'Vegetable soup + salad', kcal: 380, tag: 'Light' },
+      ],
+      workout: null,
+    },
+    {
+      key: 'w4', label: 'Sunday', short: 'Sun', date: 24,
+      meals: [
+        { slot: 'B', name: 'Egg white omelette', kcal: 320, tag: 'Protein' },
+        { slot: 'L', name: 'Chickpea curry + rice', kcal: 540, tag: 'Fiber' },
+        { slot: 'S', name: 'Trail mix', kcal: 210, tag: 'Healthy fats' },
+        { slot: 'D', name: 'Baked salmon + veg', kcal: 490, tag: 'Omega-3' },
+      ],
+      workout: { title: 'HIIT Cardio', duration: '15 min', intensity: 'High', icon: 'flash-outline' },
+    },
+    {
+      key: 'w5', label: 'Monday', short: 'Mon', date: 25,
+      meals: [
+        { slot: 'B', name: 'Smoothie bowl', kcal: 350, tag: 'Antioxidants' },
+        { slot: 'L', name: 'Lentil pasta', kcal: 510, tag: 'Fiber' },
+        { slot: 'S', name: 'Handful of walnuts', kcal: 180, tag: 'Omega-3' },
+        { slot: 'D', name: 'Chicken tikka + salad', kcal: 460, tag: 'Protein' },
+      ],
+      workout: { title: 'Brisk Walk', duration: '35 min', intensity: 'Low', icon: 'walk-outline' },
+    },
+    {
+      key: 'w6', label: 'Tuesday', short: 'Tue', date: 26, isRest: true,
+      meals: [
+        { slot: 'B', name: 'Millet upma', kcal: 360, tag: 'Low-GI' },
+        { slot: 'L', name: 'Rajma + brown rice', kcal: 560, tag: 'Protein' },
+        { slot: 'S', name: 'Sprouts chaat', kcal: 170, tag: 'Fiber' },
+        { slot: 'D', name: 'Grilled paneer bowl', kcal: 450, tag: 'Protein' },
+      ],
+      workout: null,
+    },
+  ] as WeekDay[],
+};
+
 export type QuestionOption = { label: string; value: string | number };
 export type Question = { id: string; title: string; subtitle?: string; type: 'select' | 'number' | 'multiselect'; options?: QuestionOption[]; unit?: string };
 

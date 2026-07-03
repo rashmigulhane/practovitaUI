@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 import * as Haptics from 'expo-haptics';
 import Svg, { Circle } from 'react-native-svg';
 
@@ -248,6 +249,7 @@ function RangeBtn({ label, active, onPress, testID }: any) {
 }
 
 function WeekView() {
+  const router = useRouter();
   const maxH = 6;
   return (
     <>
@@ -260,6 +262,22 @@ function WeekView() {
           </Text>
         </View>
       </View>
+
+      {/* Week ahead CTA */}
+      <Pressable
+        testID="open-week-ahead"
+        onPress={() => router.push('/week-plan')}
+        style={[styles.weekAheadCta, shadows.card]}
+      >
+        <View style={styles.weekAheadIcon}>
+          <Ionicons name="calendar-outline" size={20} color={colors.onBrandPrimary} />
+        </View>
+        <View style={{ flex: 1 }}>
+          <Text style={styles.weekAheadTitle}>See the week ahead</Text>
+          <Text style={styles.weekAheadSub}>Preview meals & workouts for Nov 20 – 26</Text>
+        </View>
+        <Ionicons name="arrow-forward" size={18} color={colors.onBrandPrimary} />
+      </Pressable>
 
       <Text style={styles.sectionTitle}>Daily progress</Text>
       <View style={[styles.weekChart, shadows.card]}>
@@ -508,6 +526,19 @@ const styles = StyleSheet.create({
   },
   monthWinRow: { flexDirection: 'row', alignItems: 'center', gap: 10 },
   monthWinText: { flex: 1, fontSize: 12, color: colors.onBrandTertiary, lineHeight: 18 },
+
+  weekAheadCta: {
+    flexDirection: 'row', alignItems: 'center', gap: spacing.md,
+    padding: spacing.md, borderRadius: radius.lg,
+    backgroundColor: colors.brand,
+  },
+  weekAheadIcon: {
+    width: 42, height: 42, borderRadius: 12,
+    backgroundColor: 'rgba(255,255,255,0.18)',
+    alignItems: 'center', justifyContent: 'center',
+  },
+  weekAheadTitle: { color: colors.onBrandPrimary, fontSize: type.base, fontWeight: font.bold, letterSpacing: -0.2 },
+  weekAheadSub: { color: 'rgba(255,255,255,0.82)', fontSize: 12, fontWeight: font.medium, marginTop: 2 },
 
   body: { padding: spacing.lg, gap: spacing.md },
 

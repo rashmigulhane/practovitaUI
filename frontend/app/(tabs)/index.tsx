@@ -157,8 +157,8 @@ export default function HomeScreen() {
         {/* Today's plan preview */}
         <View style={[styles.sectionHead, { marginTop: spacing.xl }]}>
           <Text style={styles.sectionTitle}>Today{'\u2019'}s plan</Text>
-          <Pressable onPress={() => router.push('/(tabs)/plan')}>
-            <Text style={styles.sectionAction}>Open plan</Text>
+          <Pressable testID="home-week-ahead" onPress={() => router.push('/week-plan')}>
+            <Text style={styles.sectionAction}>Week ahead ›</Text>
           </Pressable>
         </View>
         <View style={{ flexDirection: 'row', gap: spacing.md }}>
