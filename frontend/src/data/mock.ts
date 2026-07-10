@@ -436,3 +436,43 @@ export const metricTrends: Record<string, MetricTrend> = {
     ],
   },
 };
+
+export type RiskCheckpoint = {
+  id: string;
+  label: string;
+  sublabel: string;
+  date: string;
+  iso: string;
+  diabetes: number;
+  cvd: number;
+  event: 'questionnaire' | 'report';
+  reportId?: string;
+};
+
+export type RiskDriver = {
+  metric: string;
+  from: string;
+  to: string;
+  unit?: string;
+  impact: 'up' | 'down' | 'neutral';
+  affects: 'diabetes' | 'cvd' | 'both';
+};
+
+export const riskHistory: RiskCheckpoint[] = [
+  { id: 'rh0', label: 'Baseline', sublabel: 'From your questionnaire', date: 'Sep 2023', iso: '2023-09-01', diabetes: 52, cvd: 28, event: 'questionnaire' },
+  { id: 'rh1', label: 'First report', sublabel: 'Annual Health Check', date: 'Sep 15, 2023', iso: '2023-09-15', diabetes: 48, cvd: 26, event: 'report', reportId: 'r6' },
+  { id: 'rh2', label: 'Second report', sublabel: 'Diabetes screening', date: 'Apr 08, 2024', iso: '2024-04-08', diabetes: 44, cvd: 22, event: 'report', reportId: 'r5' },
+  { id: 'rh3', label: 'Mid-year check', sublabel: 'Half-yearly checkup', date: 'Oct 22, 2024', iso: '2024-10-22', diabetes: 40, cvd: 20, event: 'report', reportId: 'r4' },
+  { id: 'rh4', label: 'Annual review', sublabel: 'Annual Health Check', date: 'Feb 18, 2025', iso: '2025-02-18', diabetes: 36, cvd: 18, event: 'report', reportId: 'r3' },
+  { id: 'rh5', label: 'Lipid update', sublabel: 'Lipid Profile', date: 'Aug 03, 2025', iso: '2025-08-03', diabetes: 35, cvd: 19, event: 'report', reportId: 'r2' },
+  { id: 'rh6', label: 'Current', sublabel: 'Full Body Checkup', date: 'Nov 12, 2025', iso: '2025-11-12', diabetes: 34, cvd: 18, event: 'report', reportId: 'r1' },
+];
+
+export const riskDrivers: RiskDriver[] = [
+  { metric: 'HbA1c', from: '5.6%', to: '5.9%', impact: 'up', affects: 'diabetes' },
+  { metric: 'Fasting Glucose', from: '95 mg/dL', to: '108 mg/dL', impact: 'up', affects: 'diabetes' },
+  { metric: 'Resting HR', from: '76 bpm', to: '72 bpm', impact: 'down', affects: 'cvd' },
+  { metric: 'HDL', from: '38 mg/dL', to: '42 mg/dL', impact: 'down', affects: 'cvd' },
+  { metric: 'BMI', from: '28.2', to: '27.4', impact: 'down', affects: 'both' },
+  { metric: 'LDL', from: '138 mg/dL', to: '148 mg/dL', impact: 'up', affects: 'cvd' },
+];
