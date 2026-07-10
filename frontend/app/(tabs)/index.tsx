@@ -10,7 +10,8 @@ import Sparkline from '@/src/components/Sparkline';
 import RiskGauge from '@/src/components/RiskGauge';
 import ProfileAvatar from '@/src/components/ProfileAvatar';
 import AskFab from '@/src/components/AskFab';
-import { profiles, todayMetrics, riskScores, wearable, wellnessScore, dietPlan, workouts, weeklyWins, myCoach } from '@/src/data/mock';
+import NotificationsSheet from '@/src/components/NotificationsSheet';
+import { profiles, todayMetrics, riskScores, wearable, wellnessScore, dietPlan, workouts, weeklyWins, myCoach, notifications } from '@/src/data/mock';
 import { colors, font, radius, shadows, spacing, type } from '@/src/theme/tokens';
 
 function WellnessRing({ score, size = 100 }: { score: number; size?: number }) {
@@ -41,6 +42,8 @@ export default function HomeScreen() {
   const me = profiles[0];
   const nextMeal = dietPlan[1];
   const nextWorkout = workouts[0];
+  const [notifOpen, setNotifOpen] = React.useState(false);
+  const unreadCount = notifications.filter((n) => n.unread).length;
 
   return (
     <SafeAreaView style={styles.root} edges={['top']}>
@@ -56,9 +59,14 @@ export default function HomeScreen() {
             <Text style={styles.name}>{me.name.split(' ')[0]}</Text>
           </View>
           <View style={{ flexDirection: 'row', gap: spacing.sm, alignItems: 'center' }}>
-            <Pressable testID="home-notif" style={styles.iconBtn} hitSlop={12}>
+            <Pressable
+              testID="home-notif"
+              onPress={() => setNotifOpen(true)}
+              style={styles.iconBtn}
+              hitSlop={12}
+            >
               <Ionicons name="notifications-outline" size={20} color={colors.onSurface} />
-              <View style={styles.notifDot} />
+              {unreadCount > 0 && <View style={styles.notifDot} />}
             </Pressable>
             <Pressable
               testID="home-profile-switcher"
@@ -282,6 +290,7 @@ export default function HomeScreen() {
       </ScrollView>
 
       <AskFab bottom={100} />
+      <NotificationsSheet visible={notifOpen} onClose={() => setNotifOpen(false)} />
     </SafeAreaView>
   );
 }

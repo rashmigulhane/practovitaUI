@@ -37,6 +37,7 @@ export default function PlanScreen() {
   const [range, setRange] = useState<Range>('day');
   const [checked, setChecked] = useState<Record<string, boolean>>({ h1: true, h2: true, h6: true });
   const [mealDone, setMealDone] = useState<Record<string, boolean>>({ d1: true });
+  const [workoutDone, setWorkoutDone] = useState<Record<string, boolean>>({});
 
   const toggle = (id: string) => {
     Haptics.selectionAsync().catch(() => {});
@@ -207,20 +208,36 @@ export default function PlanScreen() {
             </View>
 
             <Text style={styles.sectionTitle}>Recommended today</Text>
-            {workouts.map((w) => (
-              <Pressable key={w.id} testID={`workout-${w.id}`} style={[styles.workoutCard, shadows.card]}>
-                <View style={styles.workoutIcon}>
-                  <Ionicons name={w.icon as any} size={22} color={colors.brand} />
+            {workouts.map((w) => {
+              const done = !!workoutDone[w.id];
+              return (
+                <View key={w.id} style={[styles.workoutCard, shadows.card, done && { backgroundColor: colors.brandTertiary, borderColor: colors.brandSecondary + '55' }]}>
+                  <Pressable
+                    testID={`workout-check-${w.id}`}
+                    onPress={() => {
+                      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light).catch(() => {});
+                      setWorkoutDone((s) => ({ ...s, [w.id]: !s[w.id] }));
+                    }}
+                    style={[styles.habitCheck, done && styles.habitCheckDone]}
+                    hitSlop={10}
+                  >
+                    {done && <Ionicons name="checkmark" size={14} color={colors.onBrandPrimary} />}
+                  </Pressable>
+                  <View style={styles.workoutIcon}>
+                    <Ionicons name={w.icon as any} size={22} color={colors.brand} />
+                  </View>
+                  <View style={{ flex: 1 }}>
+                    <Text style={[styles.workoutTitle, done && { textDecorationLine: 'line-through', color: colors.onSurfaceSecondary }]}>
+                      {w.title}
+                    </Text>
+                    <Text style={styles.workoutMeta}>{w.duration} · {w.intensity} intensity</Text>
+                  </View>
+                  <Pressable testID={`workout-play-${w.id}`} style={styles.playBtn}>
+                    <Ionicons name="play" size={16} color={colors.onBrandPrimary} />
+                  </Pressable>
                 </View>
-                <View style={{ flex: 1 }}>
-                  <Text style={styles.workoutTitle}>{w.title}</Text>
-                  <Text style={styles.workoutMeta}>{w.duration} · {w.intensity} intensity</Text>
-                </View>
-                <View style={styles.playBtn}>
-                  <Ionicons name="play" size={16} color={colors.onBrandPrimary} />
-                </View>
-              </Pressable>
-            ))}
+              );
+            })}
           </>
         )}
 

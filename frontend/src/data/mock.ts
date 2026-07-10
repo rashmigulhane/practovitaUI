@@ -339,3 +339,33 @@ export const questionnaire: Question[] = [
   { id: 'smoke', title: 'Do you smoke?', type: 'select', options: [{ label: 'Never', value: 'never' }, { label: 'Former smoker', value: 'former' }, { label: 'Current smoker', value: 'current' }] },
   { id: 'bp', title: 'Do you have high blood pressure?', type: 'select', options: [{ label: 'No', value: 'no' }, { label: 'Borderline', value: 'border' }, { label: 'Yes, on medication', value: 'yes' }] },
 ];
+
+export type Notif = { id: string; category: 'coach' | 'lab' | 'workout' | 'meal' | 'streak' | 'meds'; title: string; body: string; time: string; icon: string; unread: boolean };
+export const notifications: Notif[] = [
+  { id: 'n1', category: 'coach', title: 'Session tomorrow at 10 AM', body: 'Dr. Meera has confirmed your weekly check-in. Prepare your questions in the app.', time: '2 min ago', icon: 'chatbubbles-outline', unread: true },
+  { id: 'n2', category: 'lab', title: 'New lab report processed', body: 'Full Body Checkup — 12 metrics extracted, 3 need attention.', time: '1 hr ago', icon: 'document-text-outline', unread: true },
+  { id: 'n3', category: 'streak', title: '12-day streak! ', body: 'You\u2019ve hit your habit goal 12 days in a row. Keep going!', time: '3 hr ago', icon: 'flame-outline', unread: true },
+  { id: 'n4', category: 'workout', title: 'Time to move', body: 'Your afternoon brisk walk is scheduled in 15 minutes.', time: 'Yesterday', icon: 'walk-outline', unread: false },
+  { id: 'n5', category: 'meal', title: 'Log your dinner', body: 'Tap to check off your evening meal and complete today\u2019s plan.', time: 'Yesterday', icon: 'restaurant-outline', unread: false },
+  { id: 'n6', category: 'meds', title: 'Medication reminder', body: 'Take your evening supplement.', time: '2 days ago', icon: 'medical-outline', unread: false },
+];
+
+export type NearbyDevice = { id: string; name: string; brand: string; signal: number; icon: string };
+export const nearbyDevices: NearbyDevice[] = [
+  { id: 'nd1', name: 'Apple Watch Series 9', brand: 'Apple', signal: 92, icon: 'watch-outline' },
+  { id: 'nd2', name: 'Garmin Venu 3', brand: 'Garmin', signal: 78, icon: 'watch-outline' },
+  { id: 'nd3', name: 'Oura Ring Gen 4', brand: 'Oura', signal: 65, icon: 'ellipse-outline' },
+  { id: 'nd4', name: 'Samsung Galaxy Watch 7', brand: 'Samsung', signal: 54, icon: 'watch-outline' },
+];
+
+export const wearableSettings = {
+  syncFrequency: 'auto' as 'auto' | 'hourly' | 'manual',
+  metrics: [
+    { id: 'steps', label: 'Steps', goal: 10000, unit: 'steps', enabled: true, notify: true, icon: 'walk-outline' },
+    { id: 'hr', label: 'Heart Rate', goal: 0, unit: 'auto', enabled: true, notify: true, icon: 'heart-outline' },
+    { id: 'sleep', label: 'Sleep', goal: 7, unit: 'hrs', enabled: true, notify: false, icon: 'moon-outline' },
+    { id: 'kcal', label: 'Calories', goal: 2000, unit: 'kcal', enabled: true, notify: false, icon: 'flame-outline' },
+    { id: 'water', label: 'Hydration', goal: 2, unit: 'L', enabled: false, notify: false, icon: 'water-outline' },
+    { id: 'stress', label: 'Stress', goal: 0, unit: 'auto', enabled: false, notify: false, icon: 'pulse-outline' },
+  ],
+};
