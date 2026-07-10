@@ -145,7 +145,12 @@ export default function InsightsScreen() {
         <Text style={[styles.sectionTitle, { marginTop: spacing.xl }]}>All metrics</Text>
         <View style={styles.list}>
           {filtered.map((m) => (
-            <View key={m.id} style={styles.row}>
+            <Pressable
+              key={m.id}
+              testID={`metric-${m.id}`}
+              onPress={() => router.push(`/metric/${m.id}`)}
+              style={styles.row}
+            >
               <View style={{ flex: 1 }}>
                 <Text style={styles.metricName}>{m.name}</Text>
                 <Text style={styles.metricRange}>Reference: {m.range} {m.unit}</Text>
@@ -165,7 +170,7 @@ export default function InsightsScreen() {
                 </Text>
                 <StatusPill status={m.status} label={STATUS_LABEL[m.status]} />
               </View>
-            </View>
+            </Pressable>
           ))}
         </View>
 

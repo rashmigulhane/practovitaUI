@@ -369,3 +369,70 @@ export const wearableSettings = {
     { id: 'stress', label: 'Stress', goal: 0, unit: 'auto', enabled: false, notify: false, icon: 'pulse-outline' },
   ],
 };
+
+export type Reading = { date: string; iso: string; value: number; reportId: string; reportLabel: string };
+export type MetricTrend = {
+  id: string;
+  name: string;
+  category: string;
+  unit: string;
+  low: number;
+  high: number;
+  optimalLabel: string;
+  explanation: string;
+  readings: Reading[];
+};
+
+export const metricTrends: Record<string, MetricTrend> = {
+  glc: {
+    id: 'glc', name: 'Fasting Glucose', category: 'Diabetes', unit: 'mg/dL',
+    low: 70, high: 99, optimalLabel: '70 – 99 mg/dL',
+    explanation: 'Measured after 8+ hours of fasting. Consistently above 100 suggests pre-diabetes; above 126 on two occasions is diabetes.',
+    readings: [
+      { date: 'Nov 12, 2025', iso: '2025-11-12', value: 108, reportId: 'r1', reportLabel: 'Full Body Checkup' },
+      { date: 'Aug 03, 2025', iso: '2025-08-03', value: 105, reportId: 'r2', reportLabel: 'Lipid Profile' },
+      { date: 'Feb 18, 2025', iso: '2025-02-18', value: 101, reportId: 'r3', reportLabel: 'Annual Health Check' },
+      { date: 'Oct 22, 2024', iso: '2024-10-22', value: 95, reportId: 'r4', reportLabel: 'Half-yearly checkup' },
+      { date: 'Apr 08, 2024', iso: '2024-04-08', value: 92, reportId: 'r5', reportLabel: 'Diabetes screening' },
+      { date: 'Sep 15, 2023', iso: '2023-09-15', value: 89, reportId: 'r6', reportLabel: 'Annual Health Check' },
+    ],
+  },
+  hba1c: {
+    id: 'hba1c', name: 'HbA1c', category: 'Diabetes', unit: '%',
+    low: 4.0, high: 5.7, optimalLabel: 'Below 5.7 %',
+    explanation: 'Reflects your average blood glucose over the past 3 months. 5.7–6.4% is pre-diabetes; 6.5% and above is diabetes.',
+    readings: [
+      { date: 'Nov 12, 2025', iso: '2025-11-12', value: 5.9, reportId: 'r1', reportLabel: 'Full Body Checkup' },
+      { date: 'Aug 03, 2025', iso: '2025-08-03', value: 5.8, reportId: 'r2', reportLabel: 'Lipid Profile' },
+      { date: 'Feb 18, 2025', iso: '2025-02-18', value: 5.6, reportId: 'r3', reportLabel: 'Annual Health Check' },
+      { date: 'Oct 22, 2024', iso: '2024-10-22', value: 5.5, reportId: 'r4', reportLabel: 'Half-yearly checkup' },
+      { date: 'Apr 08, 2024', iso: '2024-04-08', value: 5.4, reportId: 'r5', reportLabel: 'Diabetes screening' },
+      { date: 'Sep 15, 2023', iso: '2023-09-15', value: 5.3, reportId: 'r6', reportLabel: 'Annual Health Check' },
+    ],
+  },
+  ldl: {
+    id: 'ldl', name: 'LDL Cholesterol', category: 'Lipids', unit: 'mg/dL',
+    low: 0, high: 100, optimalLabel: 'Below 100 mg/dL',
+    explanation: 'The "bad" cholesterol. Diet, exercise and weight all impact LDL. Statins may be considered above 190 or with cardiac risk factors.',
+    readings: [
+      { date: 'Nov 12, 2025', iso: '2025-11-12', value: 148, reportId: 'r1', reportLabel: 'Full Body Checkup' },
+      { date: 'Aug 03, 2025', iso: '2025-08-03', value: 144, reportId: 'r2', reportLabel: 'Lipid Profile' },
+      { date: 'Feb 18, 2025', iso: '2025-02-18', value: 138, reportId: 'r3', reportLabel: 'Annual Health Check' },
+      { date: 'Oct 22, 2024', iso: '2024-10-22', value: 130, reportId: 'r4', reportLabel: 'Half-yearly checkup' },
+      { date: 'Apr 08, 2024', iso: '2024-04-08', value: 122, reportId: 'r5', reportLabel: 'Diabetes screening' },
+      { date: 'Sep 15, 2023', iso: '2023-09-15', value: 118, reportId: 'r6', reportLabel: 'Annual Health Check' },
+    ],
+  },
+  hb: {
+    id: 'hb', name: 'Hemoglobin', category: 'CBC', unit: 'g/dL',
+    low: 13.5, high: 17.5, optimalLabel: '13.5 – 17.5 g/dL',
+    explanation: 'Carries oxygen in your blood. Low values may indicate anemia; high values are less common and can indicate dehydration.',
+    readings: [
+      { date: 'Nov 12, 2025', iso: '2025-11-12', value: 14.2, reportId: 'r1', reportLabel: 'Full Body Checkup' },
+      { date: 'Aug 03, 2025', iso: '2025-08-03', value: 14.1, reportId: 'r2', reportLabel: 'Lipid Profile' },
+      { date: 'Feb 18, 2025', iso: '2025-02-18', value: 14.0, reportId: 'r3', reportLabel: 'Annual Health Check' },
+      { date: 'Oct 22, 2024', iso: '2024-10-22', value: 13.8, reportId: 'r4', reportLabel: 'Half-yearly checkup' },
+      { date: 'Apr 08, 2024', iso: '2024-04-08', value: 13.6, reportId: 'r5', reportLabel: 'Diabetes screening' },
+    ],
+  },
+};

@@ -63,7 +63,12 @@ export default function ReportDetailScreen() {
             </View>
             <View style={styles.list}>
               {attention.map((m, i) => (
-                <View key={m.id} style={[styles.row, i < attention.length - 1 && styles.rowBorder]}>
+                <Pressable
+                  key={m.id}
+                  testID={`attn-${m.id}`}
+                  onPress={() => router.push(`/metric/${m.id}`)}
+                  style={[styles.row, i < attention.length - 1 && styles.rowBorder]}
+                >
                   <View style={{ flex: 1 }}>
                     <Text style={styles.metricName}>{m.name}</Text>
                     <Text style={styles.metricRange}>Reference: {m.range} {m.unit}</Text>
@@ -76,7 +81,7 @@ export default function ReportDetailScreen() {
                     <Text style={styles.metricUnit}>{m.unit}</Text>
                     <StatusPill status={m.status} label={STATUS_LABEL[m.status]} />
                   </View>
-                </View>
+                </Pressable>
               ))}
             </View>
           </>
@@ -89,7 +94,12 @@ export default function ReportDetailScreen() {
         </View>
         <View style={styles.list}>
           {normal.map((m, i) => (
-            <View key={m.id} style={[styles.row, i < normal.length - 1 && styles.rowBorder]}>
+            <Pressable
+              key={m.id}
+              testID={`norm-${m.id}`}
+              onPress={() => router.push(`/metric/${m.id}`)}
+              style={[styles.row, i < normal.length - 1 && styles.rowBorder]}
+            >
               <View style={{ flex: 1 }}>
                 <Text style={styles.metricName}>{m.name}</Text>
                 <Text style={styles.metricRange}>Reference: {m.range} {m.unit}</Text>
@@ -98,7 +108,7 @@ export default function ReportDetailScreen() {
                 <Text style={styles.metricValue}>{m.value}</Text>
                 <Text style={styles.metricUnit}>{m.unit}</Text>
               </View>
-            </View>
+            </Pressable>
           ))}
         </View>
 
