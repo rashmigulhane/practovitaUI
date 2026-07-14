@@ -476,3 +476,194 @@ export const riskDrivers: RiskDriver[] = [
   { metric: 'BMI', from: '28.2', to: '27.4', impact: 'down', affects: 'both' },
   { metric: 'LDL', from: '138 mg/dL', to: '148 mg/dL', impact: 'up', affects: 'cvd' },
 ];
+
+/* ---------- Weekly Meal Options ---------- */
+export type MealOption = {
+  id: string;
+  name: string;
+  kcal: number;
+  tag: string;
+  cuisine: string;
+  prepMin: number;
+  ingredients: string[];
+  protein: number;
+  carbs: number;
+  fat: number;
+};
+
+export const mealOptions: Record<'breakfast' | 'lunch' | 'snack' | 'dinner', MealOption[]> = {
+  breakfast: [
+    { id: 'b1', name: 'Oats with berries & flax', kcal: 380, tag: 'Fiber', cuisine: 'Continental', prepMin: 10, protein: 12, carbs: 58, fat: 10, ingredients: ['Rolled oats 1/2 cup', 'Mixed berries', 'Flax seed 1 tbsp', 'Almond milk', 'Honey 1 tsp'] },
+    { id: 'b2', name: 'Vegetable poha', kcal: 340, tag: 'Fiber', cuisine: 'Indian', prepMin: 15, protein: 8, carbs: 62, fat: 6, ingredients: ['Poha 1 cup', 'Onion, peas', 'Turmeric', 'Curry leaves', 'Peanuts'] },
+    { id: 'b3', name: 'Egg white omelette', kcal: 320, tag: 'Protein', cuisine: 'Continental', prepMin: 10, protein: 22, carbs: 20, fat: 12, ingredients: ['Egg whites x4', 'Spinach', 'Whole wheat toast', 'Cottage cheese'] },
+    { id: 'b4', name: 'Millet upma', kcal: 360, tag: 'Low-GI', cuisine: 'Indian', prepMin: 15, protein: 10, carbs: 60, fat: 8, ingredients: ['Foxtail millet', 'Mixed veg', 'Mustard seeds', 'Curry leaves'] },
+    { id: 'b5', name: 'Smoothie bowl', kcal: 350, tag: 'Antioxidants', cuisine: 'Continental', prepMin: 8, protein: 14, carbs: 52, fat: 9, ingredients: ['Frozen banana', 'Berries', 'Greek yogurt', 'Chia seeds', 'Granola'] },
+    { id: 'b6', name: 'Idli + sambar', kcal: 360, tag: 'Fiber', cuisine: 'South Indian', prepMin: 20, protein: 11, carbs: 65, fat: 5, ingredients: ['Idli x4', 'Sambar', 'Coconut chutney'] },
+    { id: 'b7', name: 'Avocado toast', kcal: 400, tag: 'Healthy fats', cuisine: 'Continental', prepMin: 8, protein: 12, carbs: 42, fat: 20, ingredients: ['Multigrain bread x2', 'Avocado 1/2', 'Egg', 'Chilli flakes'] },
+  ],
+  lunch: [
+    { id: 'l1', name: 'Grilled chicken salad', kcal: 480, tag: 'Protein', cuisine: 'Continental', prepMin: 20, protein: 42, carbs: 22, fat: 20, ingredients: ['Chicken breast 120g', 'Mixed greens', 'Cherry tomato', 'Olive oil', 'Lemon'] },
+    { id: 'l2', name: 'Quinoa bowl', kcal: 520, tag: 'Protein', cuisine: 'Mediterranean', prepMin: 25, protein: 22, carbs: 68, fat: 16, ingredients: ['Quinoa 1 cup', 'Roasted veg', 'Chickpeas', 'Feta', 'Tahini'] },
+    { id: 'l3', name: 'Palak paneer + roti', kcal: 550, tag: 'Iron', cuisine: 'Indian', prepMin: 30, protein: 24, carbs: 55, fat: 22, ingredients: ['Palak', 'Paneer 100g', '2 whole wheat rotis'] },
+    { id: 'l4', name: 'Dal + brown rice', kcal: 500, tag: 'Fiber', cuisine: 'Indian', prepMin: 25, protein: 20, carbs: 78, fat: 8, ingredients: ['Yellow dal', 'Brown rice 1 cup', 'Salad', 'Curd'] },
+    { id: 'l5', name: 'Chickpea curry + rice', kcal: 540, tag: 'Fiber', cuisine: 'Indian', prepMin: 30, protein: 22, carbs: 82, fat: 10, ingredients: ['Chana masala', 'Brown rice', 'Onion salad'] },
+    { id: 'l6', name: 'Mixed veg thali', kcal: 580, tag: 'Balanced', cuisine: 'Indian', prepMin: 35, protein: 20, carbs: 76, fat: 18, ingredients: ['Roti x2', 'Dal', 'Sabzi', 'Rice', 'Curd', 'Salad'] },
+    { id: 'l7', name: 'Lentil pasta', kcal: 510, tag: 'Fiber', cuisine: 'Continental', prepMin: 20, protein: 24, carbs: 68, fat: 12, ingredients: ['Lentil pasta', 'Marinara', 'Basil', 'Parmesan'] },
+    { id: 'l8', name: 'Rajma + brown rice', kcal: 560, tag: 'Protein', cuisine: 'Indian', prepMin: 40, protein: 22, carbs: 82, fat: 10, ingredients: ['Kidney beans', 'Brown rice', 'Onion tomato gravy'] },
+  ],
+  snack: [
+    { id: 's1', name: 'Roasted chana', kcal: 180, tag: 'Low-GI', cuisine: 'Indian', prepMin: 2, protein: 10, carbs: 22, fat: 4, ingredients: ['Roasted chana 30g', 'Chaat masala'] },
+    { id: 's2', name: 'Greek yogurt + nuts', kcal: 200, tag: 'Protein', cuisine: 'Continental', prepMin: 2, protein: 14, carbs: 12, fat: 10, ingredients: ['Greek yogurt 150g', 'Almonds & walnuts'] },
+    { id: 's3', name: 'Apple + almonds', kcal: 190, tag: 'Low-GI', cuisine: 'Any', prepMin: 1, protein: 6, carbs: 22, fat: 10, ingredients: ['Apple 1', 'Almonds 10-12'] },
+    { id: 's4', name: 'Trail mix', kcal: 210, tag: 'Healthy fats', cuisine: 'Continental', prepMin: 1, protein: 8, carbs: 18, fat: 14, ingredients: ['Almonds', 'Walnuts', 'Dark chocolate chips', 'Cranberries'] },
+    { id: 's5', name: 'Sprouts chaat', kcal: 170, tag: 'Fiber', cuisine: 'Indian', prepMin: 5, protein: 12, carbs: 22, fat: 3, ingredients: ['Moong sprouts', 'Onion tomato', 'Lemon', 'Chaat masala'] },
+    { id: 's6', name: 'Buttermilk + fruit', kcal: 160, tag: 'Probiotic', cuisine: 'Indian', prepMin: 3, protein: 6, carbs: 24, fat: 3, ingredients: ['Buttermilk 1 glass', 'Seasonal fruit'] },
+  ],
+  dinner: [
+    { id: 'd1', name: 'Steamed fish', kcal: 460, tag: 'Omega-3', cuisine: 'Continental', prepMin: 25, protein: 42, carbs: 20, fat: 18, ingredients: ['Salmon/rohu 150g', 'Steamed veg', 'Lemon herbs'] },
+    { id: 'd2', name: 'Grilled tofu stir-fry', kcal: 470, tag: 'Protein', cuisine: 'Asian', prepMin: 20, protein: 26, carbs: 42, fat: 20, ingredients: ['Tofu 150g', 'Broccoli', 'Bell peppers', 'Soy sauce', 'Ginger'] },
+    { id: 'd3', name: 'Chicken tikka + salad', kcal: 460, tag: 'Protein', cuisine: 'Indian', prepMin: 30, protein: 40, carbs: 20, fat: 22, ingredients: ['Chicken tikka 150g', 'Green salad', 'Mint chutney'] },
+    { id: 'd4', name: 'Vegetable soup + salad', kcal: 380, tag: 'Light', cuisine: 'Continental', prepMin: 25, protein: 14, carbs: 42, fat: 12, ingredients: ['Minestrone soup', 'Greek salad', 'Whole grain bread'] },
+    { id: 'd5', name: 'Baked salmon + veg', kcal: 490, tag: 'Omega-3', cuisine: 'Continental', prepMin: 30, protein: 40, carbs: 22, fat: 22, ingredients: ['Salmon 150g', 'Asparagus', 'Sweet potato'] },
+    { id: 'd6', name: 'Grilled paneer bowl', kcal: 450, tag: 'Protein', cuisine: 'Indian', prepMin: 25, protein: 26, carbs: 30, fat: 22, ingredients: ['Paneer tikka 120g', 'Sautéed veg', 'Mint chutney'] },
+  ],
+};
+
+/* ---------- Weekly Workout Schedule ---------- */
+export type Exercise = { name: string; sets?: number; reps?: string; duration?: string; rest?: string; notes?: string };
+export type DetailedWorkout = {
+  title: string;
+  duration: string;
+  intensity: 'Low' | 'Moderate' | 'High';
+  icon: string;
+  focus: string;
+  howto: string;
+  exercises: Exercise[];
+};
+
+export type WeeklyWorkoutDay = {
+  id: string;
+  day: string;
+  short: string;
+  date: number;
+  isToday?: boolean;
+  isRest?: boolean;
+  workout: DetailedWorkout | null;
+};
+
+export const weeklyWorkoutSchedule: WeeklyWorkoutDay[] = [
+  { id: 'ww0', day: 'Wednesday', short: 'Wed', date: 20, isToday: true, workout: {
+    title: 'Brisk Walk', duration: '30 min', intensity: 'Low', icon: 'walk-outline', focus: 'Cardio · Zone 2',
+    howto: 'Walk at a pace where you can talk but not sing. Keep heart rate in 108–128 bpm range. Warm up 5 min, main effort 20 min, cool down 5 min.',
+    exercises: [
+      { name: 'Warm-up walk', duration: '5 min', notes: 'Slow, easy pace' },
+      { name: 'Main effort', duration: '20 min', notes: 'Zone 2 · 108-128 bpm' },
+      { name: 'Cool-down', duration: '5 min', notes: 'Slow down gradually' },
+    ],
+  }},
+  { id: 'ww1', day: 'Thursday', short: 'Thu', date: 21, workout: {
+    title: 'Strength Training', duration: '25 min', intensity: 'Moderate', icon: 'barbell-outline', focus: 'Lower body',
+    howto: '2 rounds of the circuit below. Rest 60 sec between exercises, 90 sec between rounds. Keep form strict — quality over speed.',
+    exercises: [
+      { name: 'Bodyweight squats', sets: 2, reps: '15 reps', rest: '60 sec' },
+      { name: 'Reverse lunges', sets: 2, reps: '10 each leg', rest: '60 sec' },
+      { name: 'Glute bridges', sets: 2, reps: '15 reps', rest: '60 sec' },
+      { name: 'Standing calf raises', sets: 2, reps: '20 reps', rest: '60 sec' },
+      { name: 'Plank hold', sets: 2, duration: '30 sec', rest: '60 sec' },
+    ],
+  }},
+  { id: 'ww2', day: 'Friday', short: 'Fri', date: 22, workout: {
+    title: 'Yoga Flow', duration: '20 min', intensity: 'Low', icon: 'leaf-outline', focus: 'Mobility · Recovery',
+    howto: 'Move slowly through each pose, breathing 5 breaths per pose. Focus on hip openers and spinal mobility. End with 3-min savasana.',
+    exercises: [
+      { name: 'Sun salutation A', sets: 3, reps: '1 round', notes: 'Full flow' },
+      { name: 'Warrior II hold', duration: '30 sec each side' },
+      { name: 'Triangle pose', duration: '30 sec each side' },
+      { name: 'Pigeon pose', duration: '60 sec each side' },
+      { name: 'Seated forward fold', duration: '90 sec' },
+      { name: 'Savasana', duration: '3 min' },
+    ],
+  }},
+  { id: 'ww3', day: 'Saturday', short: 'Sat', date: 23, isRest: true, workout: null },
+  { id: 'ww4', day: 'Sunday', short: 'Sun', date: 24, workout: {
+    title: 'HIIT Cardio', duration: '15 min', intensity: 'High', icon: 'flash-outline', focus: 'Fat burn',
+    howto: '20 sec work / 40 sec rest for 12 rounds. Alternate between the 4 exercises below. Push hard during work intervals.',
+    exercises: [
+      { name: 'Jumping jacks', duration: '20 sec on / 40 rest' },
+      { name: 'Mountain climbers', duration: '20 sec on / 40 rest' },
+      { name: 'Squat jumps', duration: '20 sec on / 40 rest' },
+      { name: 'High knees', duration: '20 sec on / 40 rest' },
+    ],
+  }},
+  { id: 'ww5', day: 'Monday', short: 'Mon', date: 25, workout: {
+    title: 'Brisk Walk', duration: '35 min', intensity: 'Low', icon: 'walk-outline', focus: 'Cardio · Zone 2',
+    howto: 'Slightly longer walk than Wednesday. Try a new route to keep it engaging. Include 3 x 1-min pickups if feeling strong.',
+    exercises: [
+      { name: 'Warm-up walk', duration: '5 min' },
+      { name: 'Main effort', duration: '25 min', notes: 'Add 3 x 1-min pickups if strong' },
+      { name: 'Cool-down', duration: '5 min' },
+    ],
+  }},
+  { id: 'ww6', day: 'Tuesday', short: 'Tue', date: 26, isRest: true, workout: null },
+];
+
+export const alternativeWorkouts: DetailedWorkout[] = [
+  { title: 'Swimming', duration: '30 min', intensity: 'Moderate', icon: 'water-outline', focus: 'Full-body cardio', howto: 'Freestyle or breast stroke. Alternate easy and moderate laps.', exercises: [] },
+  { title: 'Cycling', duration: '40 min', intensity: 'Moderate', icon: 'bicycle-outline', focus: 'Cardio', howto: 'Flat route, steady pace. Keep cadence 70-90 rpm.', exercises: [] },
+  { title: 'Resistance Bands', duration: '20 min', intensity: 'Moderate', icon: 'fitness-outline', focus: 'Full body', howto: '10 exercises, 12 reps each, 2 rounds.', exercises: [] },
+  { title: 'Pilates', duration: '25 min', intensity: 'Low', icon: 'body-outline', focus: 'Core · Mobility', howto: 'Follow along video for core-focused mat pilates.', exercises: [] },
+  { title: 'Dance Cardio', duration: '20 min', intensity: 'Moderate', icon: 'musical-notes-outline', focus: 'Fun cardio', howto: 'Zumba-style workout. Fun way to hit cardio goals.', exercises: [] },
+];
+
+/* ---------- Weekly Habits ---------- */
+export type WeeklyHabit = {
+  id: string;
+  title: string;
+  target: string;
+  frequency: string;
+  weekProgress: boolean[];
+  icon: string;
+  category: 'diet' | 'workout' | 'wellness';
+};
+
+export const weeklyHabits: WeeklyHabit[] = [
+  { id: 'wh1', title: 'Drink 2L water daily', target: '2 L', frequency: 'Daily', weekProgress: [true, true, true, true, false, false, false], icon: 'water-outline', category: 'wellness' },
+  { id: 'wh2', title: 'Morning walk', target: '30 min', frequency: '5×/week', weekProgress: [true, true, false, true, false, false, false], icon: 'walk-outline', category: 'workout' },
+  { id: 'wh3', title: 'Eat 5 servings fruit/veg', target: '5×/day', frequency: 'Daily', weekProgress: [true, false, true, true, false, false, false], icon: 'nutrition-outline', category: 'diet' },
+  { id: 'wh4', title: 'Mindful breathing', target: '10 min', frequency: '3×/week', weekProgress: [true, false, false, true, false, false, false], icon: 'leaf-outline', category: 'wellness' },
+  { id: 'wh5', title: 'Sleep 7+ hours', target: '7 h', frequency: 'Daily', weekProgress: [true, true, false, true, false, false, false], icon: 'moon-outline', category: 'wellness' },
+  { id: 'wh6', title: 'Take medication', target: '1×/day', frequency: 'Daily', weekProgress: [true, true, true, true, true, false, false], icon: 'medical-outline', category: 'wellness' },
+  { id: 'wh7', title: 'No sugar/soda', target: 'Zero', frequency: 'Daily', weekProgress: [true, true, true, false, false, false, false], icon: 'ban-outline', category: 'diet' },
+];
+
+/* ---------- Plan Preferences ---------- */
+export type PlanPreferences = {
+  dietType: 'veg' | 'nonveg' | 'vegan' | 'pescatarian' | 'eggetarian';
+  cuisines: string[];
+  dislikes: string[];
+  workoutTypes: string[];
+  equipment: 'none' | 'basic' | 'full-gym';
+  duration: '15' | '30' | '45' | '60';
+  workoutDays: string[];
+  timing: 'morning' | 'afternoon' | 'evening';
+};
+
+export const defaultPreferences: PlanPreferences = {
+  dietType: 'nonveg',
+  cuisines: ['Indian', 'Continental'],
+  dislikes: [],
+  workoutTypes: ['Walking', 'Yoga'],
+  equipment: 'none',
+  duration: '30',
+  workoutDays: ['Mon', 'Wed', 'Fri', 'Sun'],
+  timing: 'morning',
+};
+
+export const weekMeta = {
+  range: 'Nov 20 – Nov 26',
+  focus: 'Heart-healthy · Low-GI',
+  weekNum: 47,
+  avgKcal: 1720,
+  workoutsCount: 5,
+  restDays: 2,
+};
